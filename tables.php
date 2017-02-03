@@ -1,10 +1,13 @@
 <?php
-	// Create connection
+	$postsDropped = false;
+	$videosDropped = false;
+
+	// Connect to database
 	$db_handler = mysql_connect($hostname, $username, $password);
 	if (!$db_handler) {
 		die('<p>Could not connect: ' . mysql_error() . '</p>');
 	}
-	echo "<p>Connected successfully<br /></p>";
+	echo "<p>Connected to database successfully<br /></p>";
 	
 	// Check if database exists
 	$db_selected = mysql_select_db($db, $db_handler);
@@ -16,6 +19,16 @@
 			echo "<p>Database <i>" . $db . "</i> created successfully<br /></p>";
 		} else {
 			echo '<p>Error creating database: ' . mysql_error() . "<br /></p>";
+		}
+	} else {
+		if ($result = mysql_query("SHOW TABLES", $db_handler))
+		{
+		    while($row = mysql_fetch_array($result, MYSQL_NUM))
+		    {
+		        mysql_query('DROP TABLE IF EXISTS '.$row[0], $db_handler);
+		    }
+
+		    echo "<p>All tables deleted</p>";
 		}
 	}
 	
@@ -39,6 +52,8 @@
 		
 		if (mysql_query($sql, $db_handler)) {
 			echo "<p>Table <i>" . $posts_table . "</i> created successfully<br /></p>";
+
+			$postsDropped = true;
 		} else {
 			 echo '<p>Error creating table <i>' . $posts_table . '</i>: ' . mysql_error() . "<br /></p>";
 		}
@@ -62,6 +77,8 @@
 		
 		if (mysql_query($sql, $db_handler)) {
 			echo "<p>Table <i>" . $videos_table . "</i> created successfully<br /></p>";
+
+			$videosDropped = true;
 		} else {
 			 echo '<p>Error creating table <i>' . $videos_table . '</i>: ' . mysql_error() . "<br /></p>";
 		}
