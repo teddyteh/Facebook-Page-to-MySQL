@@ -7,7 +7,7 @@
 	  'app_secret'            => 'f7e77bd1a4162810728679fd003fd817',
 	  'default_graph_version' => 'v2.5',
 	]);
-	$access_token = "557340154442996|1vBSuTNdGQrbUAah4lGfzwP68lU";
+	$access_token = "EAAH65d3stPQBAAiePGnpFTBsRM1QoBPlEXP3LIkOmVyiumjlGvS3IZAO4Vy9Sd6WiavoPt2fbBU1bVJ8BuzCqCxxAbxrnHHIty4mDZBpnHNdLRNgo3XF5RuT1ZBE4skx9OUpT8ZCZBvZCAmL5JeAn04bV5sp3ZCjNoZD";
 	
 	// Database details
 	$hostname = "localhost";
